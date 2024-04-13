@@ -5,7 +5,7 @@ from src import dependencies
 from fastapi import APIRouter, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, Depends, status
-from fastapi.responses import Response
+from fastapi.responses import Response, JSONResponse
 
 router = APIRouter(prefix="/order", )
 
@@ -18,7 +18,7 @@ async def get_order(id: UUID4, session: AsyncSession = Depends(dependencies.get_
     return order
 
 
-@router.put(path="/{id}", description='Закрыть заказ по его id')
+@router.put(path="/{id}/close", description='Закрыть заказ по его id')
 async def close_order(id: UUID4, session: AsyncSession = Depends(dependencies.get_async_session)):
     id = await service.close_order(session, id)
     if not id:

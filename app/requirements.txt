@@ -10,3 +10,6 @@ SQLAlchemy==2.0.23
 SQLAlchemy_Utils==0.41.2
 uvicorn==0.29.0
 asyncpg==0.29.0
+anyio==4.3.0
+pytest-asyncio==0.21.1
+pytest-tornasync==7.4.3

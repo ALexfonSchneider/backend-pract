@@ -1,6 +1,3 @@
-import contextlib
-from typing import AsyncIterator
-import uuid
 from alembic.config import Config
 import pathlib
 import sqlalchemy
@@ -10,13 +7,7 @@ from sqlalchemy_utils.functions.database import (
 )
 from sqlalchemy import URL
 from sqlalchemy.ext.asyncio import create_async_engine
-
-
-def alembic_config(pg_url: URL, alembic_root: str = pathlib.Path().resolve()) -> Config:
-    config = Config(os.path.join(alembic_root, "alembic.ini"))
-    config.set_main_option('sqlalchemy.url', str(pg_url))
-    return config
-
+from alembic.script import ScriptDirectory
 
 async def pg_create_database_async(url: URL) -> None:
     database = url.database
